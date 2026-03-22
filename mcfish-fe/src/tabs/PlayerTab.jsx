@@ -76,9 +76,15 @@ export const PlayerTab = () => {
                 <div style={{ border: "1px solid black", padding: 8, width: "72%" }}>
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <div>Selected Player: {selectedPlayer?.name ?? "No user selected"}</div>
-                        <div>
-                            <button onClick={() => setIsPolling(!isPolling)}>{isPolling ? "Stop pinging" : "Poll player"}</button>
-                        </div>
+                        {selectedPlayer &&
+                            <div>
+                                <div>
+                                    <p>Gold: {selectedPlayer.currency1}</p>
+                                    <p>Premium: {selectedPlayer.currency2}</p>
+                                </div>
+                                <button onClick={() => setIsPolling(!isPolling)}>{isPolling ? "Stop pinging" : "Poll player"}</button>
+                            </div>
+                        }
                     </div>
 
                     {selectedPlayer?.inventory && (

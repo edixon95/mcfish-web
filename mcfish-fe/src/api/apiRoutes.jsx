@@ -12,5 +12,10 @@ export const apiRoutes = {
 
     rarity_weights: {
         get: 'rarity_weights/get'
+    },
+
+    config: {
+        get: 'config/get',
+        update: 'config/update'
     }
 }

@@ -5,11 +5,13 @@ import heroImg from './assets/hero.png'
 import './App.css'
 import { PlayerTab } from './tabs/PlayerTab'
 import { ServerFish } from './tabs/ServerFish'
+import { ConfigTab } from './tabs/ConfigTab'
 
 function App() {
   const tabs = [
     "Players",
-    "Fish"
+    "Fish",
+    "Config"
   ]
   const [activeTab, setActiveTab] = useState("Players")
 
@@ -36,6 +38,7 @@ function App() {
       }}>
         {activeTab === "Players" ? <PlayerTab /> : null}
         {activeTab === "Fish" ? <ServerFish /> : null}
+        {activeTab === "Config" ? <ConfigTab /> : null}
       </div>
 
     </div>
