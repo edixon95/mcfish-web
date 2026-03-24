@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { apiCall } from '../api/apiCall'
 import { apiRoutes } from '../api/apiRoutes'
+import { InventoryView } from '../components/InventoryView'
 
 export const PlayerTab = () => {
     const [players, setPlayers] = useState([])
@@ -88,104 +89,10 @@ export const PlayerTab = () => {
                     </div>
 
                     {selectedPlayer?.inventory && (
-                        <div style={{ marginTop: 12 }}>
-
-
-                            {/* Inventory grid (slots 9–35) */}
-                            <div
-                                style={{
-                                    display: "grid",
-                                    gridTemplateColumns: "repeat(9, 1fr)",
-                                    gap: 2,
-                                    marginBottom: 8
-                                }}
-                            >
-                                {selectedPlayer.inventory.slice(9, 36).map((item, idx) => (
-                                    <div
-                                        key={idx + 9}
-                                        style={{
-                                            aspectRatio: "1 / 1",
-                                            border: "1px solid gray",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                            backgroundColor:
-                                                item?.components && Object.keys(item.components).length > 0
-                                                    ? "#8e7df3"
-                                                    : item
-                                                        ? "#f0f0f0"
-                                                        : "#fff",
-                                        }}
-                                        onClick={() => handleSelectInventorySquare(idx + 9, item)}
-                                    >
-                                        {item && (
-                                            <div style={{ fontSize: 17, textAlign: "center" }}>
-                                                {item.id.split(":")[1]}
-                                                <br />
-                                                x{item.count}
-                                            </div>
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* Hotbar */}
-                            <div
-                                style={{
-                                    display: "grid",
-                                    gridTemplateColumns: "repeat(9, 1fr)", // 9 equal columns
-                                    gap: 2,
-                                    marginBottom: 8
-                                }}
-                            >
-                                {selectedPlayer.inventory.slice(0, 9).map((item, idx) => (
-                                    <div
-                                        key={idx}
-                                        style={{
-                                            aspectRatio: "1 / 1", // perfect square
-                                            border: "1px solid gray",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                            backgroundColor:
-                                                item?.components && Object.keys(item.components).length > 0
-                                                    ? "#8e7df3"
-                                                    : item
-                                                        ? "#f0f0f0"
-                                                        : "#fff",
-                                        }}
-                                        onClick={() => handleSelectInventorySquare(idx, item)}
-                                    >
-                                        {item && (
-                                            <div style={{ fontSize: 17, textAlign: "center" }}>
-                                                {item.id.split(":")[1]}
-                                                <br />
-                                                x{item.count}
-                                            </div>
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
-                            {selectedInventorySquare?.data && (
-                                <div style={{ border: "1px solid black", padding: 8 }}>
-                                    <div><strong>Selected</strong></div>
-                                    <div>id: {selectedInventorySquare.data.id}</div>
-                                    <div>count: {selectedInventorySquare.data.count}</div>
-
-                                    {selectedInventorySquare.data.components && (
-                                        <div>
-                                            <strong>Components:</strong>
-                                            {Object.entries(selectedInventorySquare.data.components).map(([key, value]) => (
-                                                <div key={key}>
-                                                    <span>{key}: </span>
-                                                    <pre style={{ display: "inline", whiteSpace: "pre-wrap" }}>{value}</pre>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            )}
-                        </div>
+                        <InventoryView
+                            inventory={selectedPlayer.inventory}
+                            handleSelect={handleSelectInventorySquare}
+                        />
                     )}
                 </div>
             </div>
