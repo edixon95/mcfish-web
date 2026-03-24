@@ -106,10 +106,8 @@ export const ItemEditor = ({ selected, updateInventory }) => {
     const parsedItem = parseItemDeep(selected.data)
     if (!parsedItem) return <div>empty</div>
 
-    // LOCAL STATE
     const [item, setItem] = useState(parsedItem)
 
-    // Reset local state if selected changes
     useEffect(() => {
         setItem(parseItemDeep(selected.data))
     }, [selected])
