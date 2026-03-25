@@ -1,17 +1,16 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import { useState } from 'react'
 import './App.css'
 import { PlayerTab } from './tabs/PlayerTab'
 import { ServerFish } from './tabs/ServerFish'
 import { ConfigTab } from './tabs/ConfigTab'
+import { MenuTab } from './tabs/MenuTab'
 
 function App() {
   const tabs = [
     "Players",
     "Fish",
-    "Config"
+    "Config",
+    "Menus"
   ]
   const [activeTab, setActiveTab] = useState("Players")
 
@@ -39,6 +38,7 @@ function App() {
         {activeTab === "Players" ? <PlayerTab /> : null}
         {activeTab === "Fish" ? <ServerFish /> : null}
         {activeTab === "Config" ? <ConfigTab /> : null}
+        {activeTab === "Menus" ? <MenuTab /> : null}
       </div>
 
     </div>
